@@ -7,15 +7,15 @@ float:
     module: ann_benchmarks.algorithms.deglib
     name: deglib
     run_groups:
-      # DEG-30-30:
-      #   arg_groups: [{edges_per_vertex: 30, extend_k: 30, extend_eps: 0.1, optimization_target: 2}]
-      #   args: {}
-      #   query_args: [[{eps: 0.001}, {eps: 0.01}, {eps: 0.05}, {eps: 0.1}, {eps: 0.15}, {eps: 0.2}, {eps: 0.3}]]
+      DEG-30-30:
+        arg_groups: [{edges_per_vertex: 30, extend_k: 30, extend_eps: 0.1, optimization_target: 2}]
+        args: {}
+        query_args: [[{eps: 0.001}, {eps: 0.01}, {eps: 0.05}, {eps: 0.1}, {eps: 0.15}, {eps: 0.2}, {eps: 0.3}]]
       DEG-20-20:
         arg_groups: [{edges_per_vertex: 20, extend_k: 20, extend_eps: 0.1, optimization_target: 2}]
         args: {}
         query_args: [[{eps: 0.001}, {eps: 0.01}, {eps: 0.05}, {eps: 0.1}, {eps: 0.15}, {eps: 0.2}, {eps: 0.3}]]
-      # DEG-15-15:
-      #   arg_groups: [{edges_per_vertex: 15, extend_k: 15, extend_eps: 0.1, optimization_target: 2}]
-      #   args: {}
-      #   query_args: [[{eps: 0.001}, {eps: 0.01}, {eps: 0.05}, {eps: 0.1}, {eps: 0.15}, {eps: 0.2}, {eps: 0.3}]]
+      DEG-15-15:
+        arg_groups: [{edges_per_vertex: 16, extend_k: 16, extend_eps: 0.1, optimization_target: 2}]
+        args: {}
+        query_args: [[{eps: 0.001}, {eps: 0.01}, {eps: 0.05}, {eps: 0.1}, {eps: 0.15}, {eps: 0.2}, {eps: 0.3}]]
