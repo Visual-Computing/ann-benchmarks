@@ -7,7 +7,7 @@ fi
 
 case "$1" in
 	i)
-		python install.py --algorithm "$algo"
+		python install.py --algorithm "$algo" --build-arg no-cache
 		;;
 	r)
 		shift
