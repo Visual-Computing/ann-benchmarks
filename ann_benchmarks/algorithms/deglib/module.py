@@ -41,7 +41,7 @@ def build_from_data(
         metric = deglib.Metric.L2, optimization_target = deglib.builder.OptimizationTarget.LowLID,
         extend_k = None, extend_eps = 0.2,
         improve_k = 0, improve_eps = 0.001, max_path_length = 10,
-        swap_tries = 0, additional_swap_tries = 0
+        swap_tries = 0, additional_swap_tries = 0, remove_edges = False
 ):
     print('edges_per_vertex', edges_per_vertex)
     print('metric', metric)
@@ -64,6 +64,10 @@ def build_from_data(
     labels = np.arange(data.shape[0], dtype=np.uint32)
     builder.add_entry(labels, data)
     builder.build(callback=ProgressCallback(builder.get_num_new_entries(), builder.get_num_remove_entries()))
+
+    if remove_edges:
+        graph.remove_non_mrng_edges()
+
     return graph
 
 
