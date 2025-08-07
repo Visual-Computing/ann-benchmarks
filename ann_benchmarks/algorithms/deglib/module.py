@@ -7,35 +7,6 @@ import numpy as np
 from ..base.module import BaseANN
 
 
-class ProgressCallback:
-    def __init__(
-            self, num_new_entries: int, num_remove_entries: int, bar_length: int = 60, min_print_interval: float = 0.1
-    ):
-        self.num_new_entries = num_new_entries
-        self.num_remove_entries = num_remove_entries
-        self.bar_length = bar_length
-        self.maximal = self.num_new_entries + self.num_remove_entries
-        self.len_max = len(str(self.maximal))
-        self.last_print_time = 0
-        self.min_print_interval = min_print_interval
-
-    def __call__(self, builder_status):
-        current_time = time.time()
-        num_steps = builder_status.added + builder_status.deleted
-        last_step = num_steps == self.maximal
-        if current_time - self.last_print_time >= self.min_print_interval or last_step:
-            self.last_print_time = current_time
-
-            progress = num_steps / self.maximal
-            block = int(self.bar_length * progress)
-            bar = '#' * block + '-' * (self.bar_length - block)
-            percentage = progress * 100
-            sys.stdout.write(f'\n{percentage:6.2f}% [{bar}] ({num_steps:{self.len_max}} / {self.maximal})')
-            if last_step:
-                sys.stdout.write('\n')  # newline at the end
-            sys.stdout.flush()
-
-
 def build_from_data(
         data, edges_per_vertex = 32, 
         metric = deglib.Metric.L2, optimization_target = deglib.builder.OptimizationTarget.LowLID,
@@ -63,7 +34,7 @@ def build_from_data(
     builder.set_thread_count(1)
     labels = np.arange(data.shape[0], dtype=np.uint32)
     builder.add_entry(labels, data)
-    builder.build(callback=ProgressCallback(builder.get_num_new_entries(), builder.get_num_remove_entries()))
+    builder.build()
 
     if remove_edges:
         graph.remove_non_mrng_edges()
